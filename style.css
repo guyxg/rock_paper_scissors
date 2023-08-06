@@ -1,0 +1,60 @@
+body {
+    background: rgb(72, 171, 173);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.header {
+    text-align: center;
+    font-size: 50px;
+    margin: 25px;
+    font-family: 'Prata', serif;
+
+}
+
+.header-rock {
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.header-paper {
+    font-family: 'Caveat', cursive;
+}
+
+.header-scissors {
+    font-family: 'Urbanist', sans-serif;
+}
+
+.icons-container {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.icon-box {
+    display: flex;
+    direction: row;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    margin: 15px;
+    border-radius: 50%;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    height: 80%;
+}
+
+#scissors {
+    background: rgb(255, 239, 158);
+}
+
+#rock {
+    background: rgba(188, 70, 70, 0.829);
+}
+
+#paper {
+    background: rgb(152, 203, 152);
+}

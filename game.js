@@ -46,7 +46,7 @@ function game() {
     let computerScore = 0;
 
     for (let i = 0; i < ROUNDS; i++) {
-        const playerSelection = prompt("What's your selection?");
+        // const playerSelection = prompt("What's your selection?");
         let result = playRound(playerSelection, getComputerChoice());
         if (result == WIN) {
             console.log("You win!");
