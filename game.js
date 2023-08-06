@@ -11,8 +11,6 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.trim().toLowerCase();
-
     if (playerSelection == computerSelection) {
         return TIE;
     }
@@ -44,27 +42,55 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let playerScore = 0;
     let computerScore = 0;
+    let rounds = ROUNDS;
 
-    for (let i = 0; i < ROUNDS; i++) {
-        let result = playRound(playerSelection, getComputerChoice());
+    const roundsText = document.querySelector('.rounds');
+    const resultText = document.querySelector('.result-text');
+    const playerScoreDiv = document.querySelector('#you-score');
+    const computerScoreDiv = document.querySelector('#computer-score');
+    roundsText.textContent = rounds + ' rounds left';
+
+    function inner(playerSelection) {
+        const computerSelection = getComputerChoice();
+        const result = playRound(playerSelection, computerSelection);
         if (result == WIN) {
-            console.log("You win!");
+            rounds--;
             playerScore++;
+            resultText.textContent = "Computer chose "
+            + computerSelection + ". You won this round!";
         } else if (result == LOSE) {
-            console.log("You lose!");
+            rounds--;
+            resultText.textContent = "Computer chose "
+            + computerSelection + ". You lost this round.";
             computerScore++;
         } else {
-            console.log("It's a tie!");
+            resultText.textContent = "Computer chose " + computerSelection + " too!";
         }
-    }
+        playerScoreDiv.textContent = playerScore;
+        computerScoreDiv.textContent = computerScore;
 
-    if (playerScore > computerScore) {
-        console.log("You win the game!");
-    } else if (playerScore == computerScore) {
-        console.log("The game ended in a tie.");
-    } else {
-        console.log("You lost the game.");
-    }
+        if (rounds == 1) {
+            roundsText.textContent = "Final round!";
+        } else if (rounds > 0) {
+            roundsText.textContent = rounds + " rounds left";
+        } else {
+            if (playerScore > computerScore) {
+                roundsText.textContent = "You won the game! 🎉";
+            } else {
+                roundsText.textContent = "You lost the game 😔";
+            }
+            playerScore = 0;
+            computerScore = 0;
+            rounds = ROUNDS;
+            resultText.textContent = "Make a selection to start a new game!"
+        }
+    };
+
+    document.getElementById('scissors').onclick = (e) => inner('scissors');
+
+    document.getElementById('paper').onclick = (e) => inner('paper');
+
+    document.getElementById('rock').onclick = (e) => inner('rock');
 }
 
 game();
